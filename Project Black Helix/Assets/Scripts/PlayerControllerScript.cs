@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerMovementScript : MonoBehaviour
+public class PlayerControllerScript : MonoBehaviour
 {
     public float speed;
     public float gravity;
     public float jumpForce;
+
     public CharacterController con;
 
     private float y;
     private float jumpAc;
+
+    public float health;
 
     private void Update()
     {
