@@ -3,11 +3,13 @@
 public class enemyControllerScript : MonoBehaviour
 {
     public Transform plr;
+    public PlayerControllerScript scr;
 
     public float inDistance;
     public float outDistance;
     public float speed;
     public float damage;
+    public float delay;
 
     [SerializeField] private float dist;
 
@@ -19,9 +21,14 @@ public class enemyControllerScript : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, plr.position, speed * Time.deltaTime);
         }
-        else if (dist < inDistance)
+        else if (dist < inDistance && delay <= 0)
         {
-            plr.GetComponent<PlayerControllerScript>().health -= damage;
+            scr.health -= damage;
+            delay = 5;
+        }
+        else if (dist < inDistance && delay != 0 && delay > 0)
+        {
+            delay -= Time.deltaTime;
         }
     }
 
