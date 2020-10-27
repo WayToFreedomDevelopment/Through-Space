@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControllerScript : MonoBehaviour
 {
+    public int deadScene;
+
     public float speed;
     public float gravity;
     public float jumpForce;
@@ -13,7 +16,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     public float health;
 
-    private void Update()
+    private void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
 
@@ -32,5 +35,10 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
         con.Move(movement);
+
+        if(health <= 0)
+        {
+            SceneManager.LoadScene(deadScene);
+        }
     }
 }
