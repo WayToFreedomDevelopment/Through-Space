@@ -10,11 +10,18 @@ public class PlayerControllerScript : MonoBehaviour
     public float jumpForce;
 
     public CharacterController con;
+    public Rigidbody rb;
+    public Vector3 velocity;
 
     private float y;
     private float jumpAc;
 
     public float health;
+
+    private void Start()
+    {
+        velocity = rb.velocity;
+    }
 
     private void FixedUpdate()
     {
@@ -22,8 +29,8 @@ public class PlayerControllerScript : MonoBehaviour
 
         Vector2 movement = new Vector2(x * speed * Time.deltaTime, y);
 
-        if(Input.GetKey(KeyCode.Space))
-        { 
+        if (Input.GetKey(KeyCode.Space))
+        {
             jumpAc += 1;
             jumpAc = Mathf.Clamp(jumpAc, 0, jumpForce);
             y = jumpAc * Time.deltaTime;
@@ -36,9 +43,10 @@ public class PlayerControllerScript : MonoBehaviour
 
         con.Move(movement);
 
-        if(health <= 0)
+        if (health <= 0)
         {
             SceneManager.LoadScene(deadScene);
         }
+
     }
 }

@@ -10,6 +10,7 @@ public class enemyControllerScript : MonoBehaviour
     public float speed;
     public float damage;
     public float delay;
+    public float health = 100f;
 
     [SerializeField] private float dist;
 
@@ -29,6 +30,12 @@ public class enemyControllerScript : MonoBehaviour
         else if (dist < inDistance && delay != 0 && delay > 0)
         {
             delay -= Time.deltaTime;
+        }
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Killed!");
         }
     }
 
